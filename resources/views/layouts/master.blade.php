@@ -487,7 +487,7 @@ var editor1 = CKEDITOR.replace( 'summary-ckeditor' );
           });
           editor1.on( 'change', function( evt ) {
             let lengEditor = evt.editor.getData().length;
-            $("#title").on('change', function(){
+            $('#title').keyup(function(){
             var title = $("#title").val();
             if(title.length>0 && lengEditor>0){
               $("#submit-cat").prop('disabled', false);
@@ -497,6 +497,13 @@ var editor1 = CKEDITOR.replace( 'summary-ckeditor' );
             }
             });
           });
+          
+          // $('#title').keyup(function(){
+          //   $("#submit-cat").prop('disabled', false);
+          //   if($('#title').val().length == 0){
+          //     $("#submit-cat").prop('disabled', true);
+          //   }
+          // })
     });
 
     </script>
