@@ -474,22 +474,29 @@ var editor1 = CKEDITOR.replace( 'summary-ckeditor' );
 <script>
 
         $(document).ready(function(){
-          $("#title").on('change', function(){    // 2nd (A)
-            var title = $("#title").val();
-            if(title.length>0){
+          $("#title").on('change', function(){
+            editor1.on( 'change', function( evt ) {
+              var title = $("#title").val();
+            if(title.length>0 && evt.editor.getData().length>0){
               $("#submit-cat").prop('disabled', false);
             }
             else{
               $("#submit-cat").prop('disabled', true);
             }
+            });
           });
-        //   editor1.on( 'change', function( evt ) {
-        //     // getData() returns CKEditor's HTML content.
-        //     // console.log( 'Total bytes: ' + evt.editor.getData().length );
-        // });
-        //   if(title.length>0 && evt.editor.getData().length >0){
-        //       $("#submit-cat").prop('disabled', false);
-        //     }
+          editor1.on( 'change', function( evt ) {
+            let lengEditor = evt.editor.getData().length;
+            $("#title").on('change', function(){
+            var title = $("#title").val();
+            if(title.length>0 && lengEditor>0){
+              $("#submit-cat").prop('disabled', false);
+            }
+            else{
+              $("#submit-cat").prop('disabled', true);
+            }
+            });
+          });
     });
 
     </script>
