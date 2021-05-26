@@ -1,0 +1,11 @@
+@media (max-width: 767px){
+    .header-area.header-sticky .nav{
+        margin-top: 8px !important;
+    }
+}
+.title{
+    max-width: 10rem;
+}
+.text-content{
+    max-width: calc(10em + 20px);
+}
