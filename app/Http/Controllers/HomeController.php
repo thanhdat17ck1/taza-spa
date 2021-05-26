@@ -76,11 +76,10 @@ class HomeController extends Controller
         ];
         $uri = 'article';
         $result = API::connect($uri, $data, 'POST');
-        dd($result);
-        return response()->json([
-            
-        ]);
+        //dd($result);
+        //return
         //dd($data);
+        return redirect()->route('home');
     }   
     //chi tiết bài viết
     public function detail($id){

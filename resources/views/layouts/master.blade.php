@@ -74,7 +74,7 @@ https://templatemo.com/tm-562-space-dynamic
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="scroll-to-section"><input type="text" placeholder="Nhập từ khóa tìm kiếm"></li>
+                            <li class="scroll-to-section"><input type="search" placeholder="Nhập từ bạn cần tìm?" aria-describedby="button-addon8" class="form-control"></li>
                             <li class="scroll-to-section"><a href="#top" class="active">Trang Chủ</a></li>
                             <li class="scroll-to-section"><a href="#about">Giới thiệu</a></li>
                             <li class="scroll-to-section"><a href="#services">Tin tức</a></li>
@@ -230,7 +230,7 @@ https://templatemo.com/tm-562-space-dynamic
                                 </div>
                                 <div class="form-group">
                                   <label>Nội dung</label>
-                                  <textarea name="articletext" id="summary-ckeditor" cols="30" rows="5"></textarea>
+                                  <textarea name="articletext" id="summary-ckeditor" class="content-ckeditor" cols="30" rows="5"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleTextarea">Đường dẫn</label>
@@ -239,7 +239,7 @@ https://templatemo.com/tm-562-space-dynamic
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                <button type="submit" class="btn btn-primary" disabled>Lưu thay đổi</button>
+                                <button type="submit" id="submit-cat" class="btn btn-primary" disabled>Lưu thay đổi</button>
                             </div>
                         </form>
 
@@ -273,7 +273,7 @@ https://templatemo.com/tm-562-space-dynamic
                                     <h4>{{ $Article[$i]['attributes']['title'] }}</h4>
                                 </a>
                                 {{-- Str::limit($myVariable, 10) --}}
-                                {!! Str::limit($Article[10]['attributes']['text'],150) !!}
+                                {!! Str::limit($Article[$i]['attributes']['text'],150) !!}
                                 <div class="main-blue-button">
                                     <a href="#">Xem thêm</a>
                                 </div>
@@ -294,7 +294,7 @@ https://templatemo.com/tm-562-space-dynamic
                                         <a href="{{ route('detail',['id'=> $Article[$i]['id']]) }}">
                                             <h4>{{ $Article[$i]['attributes']['title'] }}</h4>
                                         </a>
-                                        {!! Str::limit($Article[10]['attributes']['text'],100) !!}
+                                        {!! Str::limit($Article[$i]['attributes']['text'],100) !!}
                                     </div>
                                     <div class="right-image">
                                         <a href="#"><img src="assets/images/blog-thumb-01.jpg" alt=""></a>
@@ -469,12 +469,24 @@ https://templatemo.com/tm-562-space-dynamic
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 <script>
-CKEDITOR.replace( 'summary-ckeditor' );
+var editor1 = CKEDITOR.replace( 'summary-ckeditor' );
 </script>
 <script>
+
         $(document).ready(function(){
-          var bla = $('#title').attr('');
-          console.log(bla);
+          $("#title").on('change', function(){    // 2nd (A)
+            var title = $("#title").val();
+            // var content = $(".content-ckeditor").val();
+            
+            // console.log(title.length);
+          });
+          editor1.on( 'change', function( evt ) {
+            // getData() returns CKEditor's HTML content.
+            // console.log( 'Total bytes: ' + evt.editor.getData().length );
+        });
+          if(title.length>0 && evt.editor.getData().length >0){
+              $("#submit-cat").prop('disabled', false);
+            }
     });
 
     </script>
