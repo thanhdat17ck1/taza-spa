@@ -476,17 +476,17 @@ var editor1 = CKEDITOR.replace( 'summary-ckeditor' );
         $(document).ready(function(){
           $("#title").on('change', function(){    // 2nd (A)
             var title = $("#title").val();
-            // var content = $(".content-ckeditor").val();
-            
-            // console.log(title.length);
-          });
-          editor1.on( 'change', function( evt ) {
-            // getData() returns CKEditor's HTML content.
-            // console.log( 'Total bytes: ' + evt.editor.getData().length );
-        });
-          if(title.length>0 && evt.editor.getData().length >0){
+            if(title.length>0){
               $("#submit-cat").prop('disabled', false);
             }
+          });
+        //   editor1.on( 'change', function( evt ) {
+        //     // getData() returns CKEditor's HTML content.
+        //     // console.log( 'Total bytes: ' + evt.editor.getData().length );
+        // });
+        //   if(title.length>0 && evt.editor.getData().length >0){
+        //       $("#submit-cat").prop('disabled', false);
+        //     }
     });
 
     </script>
