@@ -479,6 +479,9 @@ var editor1 = CKEDITOR.replace( 'summary-ckeditor' );
             if(title.length>0){
               $("#submit-cat").prop('disabled', false);
             }
+            else{
+              $("#submit-cat").prop('disabled', true);
+            }
           });
         //   editor1.on( 'change', function( evt ) {
         //     // getData() returns CKEditor's HTML content.
